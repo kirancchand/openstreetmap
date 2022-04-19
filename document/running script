@@ -1,0 +1,14 @@
+docker run --rm \
+   -e UPDATES=enabled \
+   -v /home/kirancchand/Desktop/workspace/project/docker/Openstreetmap/Data/malta-latest.osm.pbf:/data.osm.pbf \
+   -v /home/kirancchand/Desktop/workspace/project/docker/Openstreetmap/Data/malta.poly:/data.poly \
+   -v openstreetmap-data:/var/lib/postgresql/12/main \
+   -v openstreetmap-rendered-tiles:/var/lib/mod_tile \
+   osm-tile\
+   import
+   
+docker run \
+  -p 8989:80 \
+  -v openstreetmap-data:/var/lib/postgresql/12/main \
+  -d osm-tile \
+  run
